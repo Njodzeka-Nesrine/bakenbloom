@@ -1,0 +1,766 @@
+```html
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bake n Bloom | Where Every Recipe Blooms</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #faf5ef;
+            color: #4b2e20;
+        }
+
+        :root {
+            --dark-brown: #3b2418;
+            --brown: #6f4e37;
+            --medium-brown: #8b6246;
+            --caramel: #c49a6c;
+            --light-brown: #e8d5c0;
+            --cream: #faf5ef;
+            --white: #ffffff;
+        }
+
+        /* NAVIGATION BAR */
+
+        header {
+            background-color: var(--dark-brown);
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--caramel);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--cream);
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #f5e8dc;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--caramel);
+        }
+
+        .contact-button {
+            background-color: var(--caramel);
+            color: var(--dark-brown);
+            padding: 11px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+        .contact-button:hover {
+            background-color: var(--cream);
+            color: var(--dark-brown);
+        }
+
+        /* HERO SECTION */
+
+        .hero {
+            min-height: 600px;
+            background:
+                linear-gradient(
+                    rgba(59, 36, 24, 0.75),
+                    rgba(59, 36, 24, 0.65)
+                ),
+                url("https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1600&q=85");
+
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            color: var(--white);
+        }
+
+        .small-heading {
+            color: var(--caramel);
+            font-size: 15px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 65px;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+
+        .hero-content h1 span {
+            color: var(--caramel);
+        }
+
+        .hero-content p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #f1e5d9;
+            margin-bottom: 35px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            background-color: var(--caramel);
+            color: var(--dark-brown);
+            padding: 15px 35px;
+            border-radius: 35px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            background-color: var(--cream);
+            transform: translateY(-4px);
+        }
+
+        /* ABOUT SECTION */
+
+        .about {
+            padding: 100px 10%;
+            text-align: center;
+            background-color: var(--cream);
+        }
+
+        .section-label {
+            color: var(--medium-brown);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .about h2,
+        .categories h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: var(--dark-brown);
+            margin-bottom: 25px;
+        }
+
+        .about h2 span {
+            color: var(--medium-brown);
+        }
+
+        .about p {
+            max-width: 750px;
+            margin: auto;
+            font-size: 16px;
+            line-height: 2;
+            color: #795b47;
+        }
+
+        .about-decoration {
+            font-size: 30px;
+            color: var(--caramel);
+            margin-top: 25px;
+        }
+
+        /* RECIPE CATEGORIES */
+
+        .categories {
+            padding: 100px 8%;
+            background-color: #f0e3d5;
+            text-align: center;
+        }
+
+        .categories h2 {
+            margin-bottom: 15px;
+        }
+
+        .category-intro {
+            color: #795b47;
+            margin-bottom: 55px;
+            font-size: 15px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .category-card {
+            background-color: var(--cream);
+            border-radius: 18px;
+            overflow: hidden;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(59, 36, 24, 0.08);
+            transition: 0.4s;
+            border: 1px solid #e4d2bf;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(59, 36, 24, 0.18);
+        }
+
+        .category-image {
+            overflow: hidden;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            display: block;
+            transition: 0.5s;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-info {
+            padding: 25px 20px;
+        }
+
+        .category-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--dark-brown);
+            margin-bottom: 10px;
+        }
+
+        .category-info p {
+            color: #8b705b;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .category-info span {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--medium-brown);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* QUOTE SECTION */
+
+        .quote-section {
+            background-color: var(--dark-brown);
+            padding: 80px 20px;
+            text-align: center;
+            color: var(--cream);
+        }
+
+        .quote-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .quote-section p {
+            color: var(--caramel);
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background-color: #29180f;
+            padding: 60px 8% 25px;
+            color: #d8c3af;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about {
+            max-width: 350px;
+        }
+
+        .footer-about h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--caramel);
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .footer-about p {
+            font-size: 13px;
+            line-height: 1.9;
+            color: #bda58f;
+        }
+
+        .footer-links h3 {
+            color: var(--cream);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #bda58f;
+            text-decoration: none;
+            font-size: 13px;
+            margin-bottom: 12px;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--caramel);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #4a3325;
+            padding-top: 25px;
+            text-align: center;
+            font-size: 12px;
+            color: #947b65;
+        }
+
+        /* RESPONSIVE DESIGN */
+
+        @media (max-width: 900px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 50px;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 20px 5%;
+            }
+
+            .logo {
+                font-size: 26px;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: 500px;
+            }
+
+            .hero-content h1 {
+                font-size: 38px;
+            }
+
+            .hero-content p {
+                font-size: 14px;
+            }
+
+            .about {
+                padding: 70px 7%;
+            }
+
+            .about h2,
+            .categories h2 {
+                font-size: 32px;
+            }
+
+            .categories {
+                padding: 70px 7%;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quote-section h2 {
+                font-size: 28px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+
+    <header>
+
+        <div class="logo">
+            Bake <span>n</span> Bloom
+        </div>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="#about">About</a>
+            <a href="#categories">Recipes</a>
+            <a href="/contact/" class="contact-button">Contact Us</a>
+        </nav>
+
+    </header>
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="small-heading">
+                Welcome to Bake n Bloom
+            </p>
+
+            <h1>
+                Where Every<br>
+                Recipe <span>Blooms</span>
+            </h1>
+
+            <p>
+                Discover the joy of baking with delicious recipes
+                made with love, creativity, and a little sweetness.
+                Your next favourite recipe starts here.
+            </p>
+
+            <a href="#categories" class="hero-button">
+                Explore Recipes
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT SECTION -->
+
+    <section class="about" id="about">
+
+        <p class="section-label">Our Story</p>
+
+        <h2>
+            A Little Taste of <span>Happiness</span>
+        </h2>
+
+        <p>
+            Bake n Bloom is a recipe website created for everyone
+            who loves good food and beautiful baking.
+
+            We share different recipes for pastries, savouries,
+            cakes, bread, desserts, cookies, and African snacks.
+
+            Whether you are a beginner or an experienced baker,
+            there is always something delicious waiting for you.
+        </p>
+
+        <div class="about-decoration">
+            ✦
+        </div>
+
+    </section>
+
+    <!-- RECIPE CATEGORIES -->
+
+    <section class="categories" id="categories">
+
+        <p class="section-label">Find Your Favourite</p>
+
+        <h2>Explore Our Recipes</h2>
+
+        <p class="category-intro">
+            From sweet treats to savoury delights,
+            find something special to bake today.
+        </p>
+
+        <div class="category-grid">
+
+            <!-- CAKES -->
+
+            <a href="/category/cakes/" class="category-card">
+
+                <div class="category-image">
+                    <img
+                        src="https://images.pexels.com/photos/15850680/pexels-photo-15850680.jpeg"
+                        alt="Chocolate cake"
+                    >
+                </div>
+
+                <div class="category-info">
+                    <h3>Cakes</h3>
+                    <p>
+                        Soft, fluffy, and delicious cakes
+                        for every special moment.
+                    </p>
+                    <span>Discover Recipes →</span>
+                </div>
+
+            </a>
+
+            <!-- PASTRIES -->
+
+            <a href="/category/pastries/" class="category-card">
+
+                <div class="category-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1726418490645-f5b88d2f18ea?auto=format&fit=crop&w=800&q=85"
+                        alt="Freshly baked pastries"
+                    >
+                </div>
+
+                <div class="category-info">
+                    <h3>Pastries</h3>
+                    <p>
+                        Delightful pastries with
+                        buttery and golden layers.
+                    </p>
+                    <span>Discover Recipes →</span>
+                </div>
+
+            </a>
+
+            <!-- BREAD -->
+
+            <a href="/category/bread/" class="category-card">
+
+                <div class="category-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=85"
+                        alt="Fresh homemade bread"
+                    >
+                </div>
+
+                <div class="category-info">
+                    <h3>Bread</h3>
+                    <p>
+                        Warm, fresh, and homemade bread
+                        for every breakfast table.
+                    </p>
+                    <span>Discover Recipes →</span>
+                </div>
+
+            </a>
+
+            <!-- SAVOURIES -->
+
+            <a href="/category/savouries/" class="category-card">
+
+                <div class="category-image">
+                    <img
+                        src="https://www.bourkestreetbakery.com.au/wp-content/uploads/2024/07/Meat-Supreme-Pack_Square.jpg"
+                        alt="Meat pies and sausage rolls"
+                    >
+                </div>
+
+                <div class="category-info">
+                    <h3>Savouries</h3>
+                    <p>
+                        Tasty and satisfying savoury treats
+                        for every occasion.
+                    </p>
+                    <span>Discover Recipes →</span>
+                </div>
+
+            </a>
+
+            <!-- AFRICAN SNACKS -->
+
+            <a href="/category/african-snacks/" class="category-card">
+
+                <div class="category-image">
+                    <img
+                        src="https://adescuisine.com/cdn/shop/products/nigerian-puff-puff-recipe-how-to-make-puff-puff-img-1.jpg?v=1589310216"
+                        alt="Golden Nigerian Puff Puff"
+                    >
+                </div>
+
+                <div class="category-info">
+                    <h3>African Snacks</h3>
+                    <p>
+                        Enjoy the rich taste of traditional
+                        African snacks and favourites.
+                    </p>
+                    <span>Discover Recipes →</span>
+                </div>
+
+            </a>
+
+            <!-- COOKIES -->
+
+            <a href="/category/cookies/" class="category-card">
+
+                <div class="category-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=85"
+                        alt="Freshly baked chocolate chip cookies"
+                    >
+                </div>
+
+                <div class="category-info">
+                    <h3>Cookies</h3>
+                    <p>
+                        Sweet, crunchy, and chewy cookies
+                        baked to perfection.
+                    </p>
+                    <span>Discover Recipes →</span>
+                </div>
+
+            </a>
+
+            <!-- DESSERTS -->
+
+            <a href="/category/desserts/" class="category-card">
+
+                <div class="category-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=85"
+                        alt="Sweet dessert"
+                    >
+                </div>
+
+                <div class="category-info">
+                    <h3>Desserts</h3>
+                    <p>
+                        End every meal with something
+                        sweet, creamy, and special.
+                    </p>
+                    <span>Discover Recipes →</span>
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- QUOTE SECTION -->
+
+    <section class="quote-section">
+
+        <h2>
+            "Baking is love made edible."
+        </h2>
+
+        <p>
+            MADE WITH LOVE • BAKED WITH PASSION
+        </p>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-about">
+
+                <h2>Bake n Bloom</h2>
+
+                <p>
+                    A little sweetness, a little creativity,
+                    and a whole lot of love.
+
+                    Discover beautiful recipes and make
+                    every baking moment special.
+                </p>
+
+            </div>
+
+            <div class="footer-links">
+
+                <h3>Quick Links</h3>
+
+                <a href="/">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#categories">Recipe Categories</a>
+                <a href="/contact/">Contact Us</a>
+
+            </div>
+
+            <div class="footer-links">
+
+                <h3>Our Recipes</h3>
+
+                <a href="/category/cakes/">Cakes</a>
+                <a href="/category/pastries/">Pastries</a>
+                <a href="/category/bread/">Bread</a>
+                <a href="/category/african-snacks/">African Snacks</a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Bake n Bloom. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

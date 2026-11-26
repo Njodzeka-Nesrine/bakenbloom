@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ category_name }} - Bake n Bloom</title>
+</head>
+
+<body>
+
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/about/">About Us</a> |
+        <a href="/contact/">Contact Us</a>
+    </nav>
+
+    <hr>
+
+    <h1>{{ category_name }}</h1>
+
+    <p>Explore our delicious {{ category_name }} recipes.</p>
+
+    <h2>Available Recipes</h2>
+
+    {% for recipe in recipes %}
+
+        <h3>
+            <a href="{% url 'recipe_detail' recipe.slug %}">
+                {{ recipe.name }}
+            </a>
+        </h3>
+
+        <p>{{ recipe.description }}</p>
+
+        <p>
+            <a href="{% url 'recipe_detail' recipe.slug %}">
+                View Recipe
+            </a>
+        </p>
+
+        <hr>
+
+    {% empty %}
+
+        <p>No recipes are available in this category yet.</p>
+
+    {% endfor %}
+
+    <a href="/">Back to Home</a>
+
+</body>
+</html>

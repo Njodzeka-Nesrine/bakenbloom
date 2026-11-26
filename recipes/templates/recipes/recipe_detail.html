@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ recipe.name }} - Bake n Bloom</title>
+</head>
+
+<body>
+
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/category/{{ recipe.category }}/">
+            Back to {{ recipe.category }}
+        </a>
+    </nav>
+
+    <hr>
+
+    <h1>{{ recipe.name }}</h1>
+
+    <p>{{ recipe.description }}</p>
+
+    <h2>Recipe Information</h2>
+
+    <p>Preparation Time: {{ recipe.prep }}</p>
+
+    <p>Cooking Time: {{ recipe.cook }}</p>
+
+    <p>Temperature: {{ recipe.temperature }}</p>
+
+    <h2>Ingredients</h2>
+
+    <ul>
+        {% for ingredient in recipe.ingredients %}
+            <li>{{ ingredient }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>How to Prepare</h2>
+
+    <ol>
+        {% for step in recipe.steps %}
+            <li>{{ step }}</li>
+        {% endfor %}
+    </ol>
+
+    <hr>
+
+    <p>Happy Baking!</p>
+
+    <a href="/">Return to Bake n Bloom</a>
+
+</body>
+</html>
